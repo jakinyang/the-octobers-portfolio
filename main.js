@@ -100,8 +100,13 @@ Array(1000).fill().forEach(addStar)
 
 // Resize
 window.addEventListener('resize', () => {
+  // Update Sizes
   sizes.width = window.innerWidth;
   sizes.height = window.innerHeight;
+
+  // Update Camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
 })
 
