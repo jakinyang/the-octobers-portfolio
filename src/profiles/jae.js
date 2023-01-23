@@ -1,7 +1,11 @@
+// Imports
 import * as THREE from 'three';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
+
+// Components
 import { jaeTagGroup } from '../../main';
+import { jaeNameGroup } from '../../main';
 import { extrudeSettings } from '../titleBoard';
 
 // Font Loader
@@ -20,7 +24,7 @@ export const jaeCube = new THREE.Mesh(
 
 jaeCube.position.set(-10, 1, 10);
 
-// Font
+// Tag Font
 fontLoader.load(
   '/fonts/Comfortaa_Regular.json',
   (comfortaa) => {
@@ -38,18 +42,34 @@ fontLoader.load(
     jaeTagGroup.add(tagtextMesh);
   }
 )
+// Name Font
+fontLoader.load(
+  '../../fonts/Contrail_One_Regular.json',
+  (contrail) => {
+    const nametextGeometry = new TextGeometry(
+    `JAE CHUN YANG`, {
+      size: 1,
+      height: 0.6,
+      font: contrail
+    });
+    const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
+    const jaeMesh = new THREE.Mesh(nametextGeometry, nametextMaterial);
+    jaeMesh.position.set(-3.5, 0, 0)
+    jaeNameGroup.add(jaeMesh);
+  }
+)
 
 // Backboard
-const tagboardLength = 10, tagboardWidth = 5.5;
+const backboardLength = 8, backboardWidth = 1;
 
-const tagboardShape = new THREE.Shape();
-tagboardShape.moveTo(0, 0);
-tagboardShape.lineTo(-0.7, tagboardWidth);
-tagboardShape.lineTo(tagboardLength - 0.7, tagboardWidth);
-tagboardShape.lineTo(tagboardLength + 0.7, 0);
-tagboardShape.lineTo(0.7, 0);
+const backboardShape = new THREE.Shape();
+backboardShape.moveTo(0, 0);
+backboardShape.lineTo(0, backboardWidth);
+backboardShape.lineTo(backboardLength, backboardWidth);
+backboardShape.lineTo(backboardLength, 0);
+backboardShape.lineTo(0, 0);
 
-const tagboardGeometry = new THREE.ExtrudeGeometry(tagboardShape, extrudeSettings);
-const tagboardMaterial = new THREE.MeshBasicMaterial({ color: 0x027a00 });
-const tagboard = new THREE.Mesh(tagboardGeometry, tagboardMaterial);
-tagboard.position.set(10, 0, 10);
+const backboardGeometry = new THREE.ExtrudeGeometry(backboardShape, extrudeSettings);
+const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x020122 });
+export const jaeBoard = new THREE.Mesh(backboardGeometry, backboardMaterial);
+jaeBoard.position.set(-3.5, 0, 0);
