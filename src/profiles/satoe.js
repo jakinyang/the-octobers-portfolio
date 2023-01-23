@@ -4,34 +4,35 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 // Components
-import { jaeTagGroup } from '../../main';
-import { jaeNameGroup } from '../../main';
+import { satoeTagGroup } from '../../main';
+import { satoeNameGroup } from '../../main';
 import { extrudeSettings } from '../titleBoard';
 
 // Font Loader
 const fontLoader = new FontLoader();
 
 // Profile Cube
-const jae = new THREE.TextureLoader().load('../../avatars/jae.jpeg');
+const satoe = new THREE.TextureLoader().load('../../avatars/satoe.jpeg');
 
-export const jaeCube = new THREE.Mesh(
+export const satoeCube = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
-    map: jae
+    map: satoe
   })
 );
 
-jaeCube.position.set(-10, 1, 10);
+satoeCube.position.set(15, 1, 150);
 
 // Tag Font
 fontLoader.load(
   '/fonts/Comfortaa_Regular.json',
   (comfortaa) => {
     const tagtextGeometry = new TextGeometry(
-    `MUSIC DOER
-  FOOD EATER
-  TREE PLANTER`, {
+    `
+    DOG LOVER
+    DOG BELIEVER
+    DOG HIKER`, {
       size: 1,
       height: 0.4,
       font: comfortaa
@@ -39,7 +40,7 @@ fontLoader.load(
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
     const tagtextMesh = new THREE.Mesh(tagtextGeometry, tagtextMaterial);
     tagtextMesh.position.set(-5, 2, 0)
-    jaeTagGroup.add(tagtextMesh);
+    satoeTagGroup.add(tagtextMesh);
   }
 )
 // Name Font
@@ -47,20 +48,20 @@ fontLoader.load(
   '../../fonts/Contrail_One_Regular.json',
   (contrail) => {
     const nametextGeometry = new TextGeometry(
-    `JAE CHUN YANG`, {
+    `SATOE SAKONJO`, {
       size: 1,
       height: 0.6,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
-    const jaeMesh = new THREE.Mesh(nametextGeometry, nametextMaterial);
-    jaeMesh.position.set(-3.5, 0, 0)
-    jaeNameGroup.add(jaeMesh);
+    const satoeMesh = new THREE.Mesh(nametextGeometry, nametextMaterial);
+    satoeMesh.position.set(-3.5, 0, 0)
+    satoeNameGroup.add(satoeMesh);
   }
 )
 
 // Backboard
-const backboardLength = 8, backboardWidth = 1;
+const backboardLength = 7.5, backboardWidth = 1;
 
 const backboardShape = new THREE.Shape();
 backboardShape.moveTo(0, 0);
@@ -71,5 +72,5 @@ backboardShape.lineTo(0, 0);
 
 const backboardGeometry = new THREE.ExtrudeGeometry(backboardShape, extrudeSettings);
 const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x020122 });
-export const jaeBoard = new THREE.Mesh(backboardGeometry, backboardMaterial);
-jaeBoard.position.set(-3.5, 0, 0);
+export const satoeBoard = new THREE.Mesh(backboardGeometry, backboardMaterial);
+satoeBoard.position.set(-3.5, 0, 0);
