@@ -7,6 +7,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
+import { jaeCube } from './src/profiles/jae';
 
 // Constants
 const sizes = {
@@ -15,12 +16,11 @@ const sizes = {
 }
 
 // Scene
-const highBloomScene = new THREE.Scene();
-const lowBloomScene = new THREE.Scene();
+const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 2, 7)
+camera.position.set(0, 2, 40)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -32,21 +32,7 @@ renderer.setSize(sizes.width, sizes.height);
 
 // Render Passes
 const composer = new EffectComposer(renderer);
-const lowComposer = new EffectComposer(renderer);
-const renderPass = new RenderPass(highBloomScene, camera);
-const lowRenderPass = new RenderPass(lowBloomScene, camera);
-
-const lowBloomPass = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
-  1.6,
-  0.1,
-  0.1
-);
-
-lowBloomPass.threshold = 0;
-lowBloomPass.strength = 0.3;
-lowBloomPass.radius = 0.5;
-
+const renderPass = new RenderPass(scene, camera);
 
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
@@ -86,8 +72,6 @@ const shaderPass = new ShaderPass(
   }),
 )
 
-lowComposer.addPass(lowRenderPass);
-lowComposer.addPass(lowBloomPass);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 composer.addPass(shaderPass);
@@ -95,6 +79,8 @@ composer.addPass(shaderPass);
 
 // Groups
 const titleGroup = new THREE.Group();
+const jaeTagGroup = new THREE.Group();
+
 
 // Font
 const fontLoader = new FontLoader();
@@ -116,12 +102,12 @@ fontLoader.load(
 // Backboard
 const length = 6, width = 0.5;
 
-const shape = new THREE.Shape();
-shape.moveTo(0, 0);
-shape.lineTo(0, width);
-shape.lineTo(length, width);
-shape.lineTo(length, 0);
-shape.lineTo(0, 0);
+const backboardShape = new THREE.Shape();
+backboardShape.moveTo(0, 0);
+backboardShape.lineTo(0, width);
+backboardShape.lineTo(length, width);
+backboardShape.lineTo(length, 0);
+backboardShape.lineTo(0, 0);
 
 const extrudeSettings = {
   steps: 2,
@@ -133,20 +119,20 @@ const extrudeSettings = {
   bevelSegments: 20
 };
 
-const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+const geometry = new THREE.ExtrudeGeometry(backboardShape, extrudeSettings);
 const material = new THREE.MeshBasicMaterial({ color: 0x3a0ca3 });
 const backboard = new THREE.Mesh(geometry, material);
 backboard.position.set(-3, 0.2, -0.15);
 titleGroup.add(backboard);
 
-highBloomScene.add(titleGroup);
+scene.add(titleGroup);
 
 // Light
 const dLight = new THREE.DirectionalLight(0xffffff);
 // lowBloomScene.add(dLight);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
-highBloomScene.add(ambientLight);
+scene.add(ambientLight);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -161,7 +147,7 @@ function addStar() {
 
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
   star.position.set(x, y, z);
-  highBloomScene.add(star);
+  scene.add(star);
 }
 
 Array(1000).fill().forEach(addStar)
@@ -179,24 +165,50 @@ for (let i = 0; i < 500; i++) {
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
   sphere.position.set(x, y, z);
   sphere.scale.setScalar(Math.random() * Math.random() + 0.5);
-  highBloomScene.add(sphere);
+  scene.add(sphere);
 
 }
 
-// Profile Cube
-const jae = new THREE.TextureLoader().load('./avatars/jae.jpeg');
+scene.add(jaeCube);
 
-const jaeCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
-  new THREE.MeshStandardMaterial({
-    color: 0x3b4554,
-    map: jae
-  })
+
+// Tag Block
+// Font
+fontLoader.load(
+  '/fonts/Comfortaa_Regular.json',
+  (comfortaa) => {
+    const tagtextGeometry = new TextGeometry(
+    `MUSIC DOER
+  FOOD EATER
+  TREE PLANTER`, {
+      size: 1,
+      height: 0.4,
+      font: comfortaa
+    });
+    const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
+    const tagtextMesh = new THREE.Mesh(tagtextGeometry, tagtextMaterial);
+    tagtextMesh.position.set(-5, 2, 0)
+    jaeTagGroup.add(tagtextMesh);
+  }
 )
 
-jaeCube.position.set(-8, 1, 5);
+// Backboard
+const tagboardLength = 10, tagboardWidth = 5.5;
 
-highBloomScene.add(jaeCube);
+const tagboardShape = new THREE.Shape();
+tagboardShape.moveTo(0, 0);
+tagboardShape.lineTo(-0.7, tagboardWidth);
+tagboardShape.lineTo(tagboardLength - 0.7, tagboardWidth);
+tagboardShape.lineTo(tagboardLength + 0.7, 0);
+tagboardShape.lineTo(0.7, 0);
+
+const tagboardGeometry = new THREE.ExtrudeGeometry(tagboardShape, extrudeSettings);
+const tagboardMaterial = new THREE.MeshBasicMaterial({ color: 0x027a00 });
+const tagboard = new THREE.Mesh(tagboardGeometry, tagboardMaterial);
+tagboard.position.set(10, 0, 10);
+// jaeTagGroup.add(tagboard);
+jaeTagGroup.position.set(10, 0, 10);
+scene.add(jaeTagGroup);
 
 // Resize
 window.addEventListener('resize', () => {
@@ -217,22 +229,40 @@ const gridHelper = new THREE.GridHelper(200, 50);
 // lowBloomScene.add(lightHelper, gridHelper, axesHelper);
 
 // Test Helpers
+const oscillateTitle = (group) => {
+  group.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
+  group.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+  group.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+}
+const oscillateTag = (group) => {
+  group.rotation.z = Math.sin(Date.now() * -0.001) * Math.PI * 0.05;
+  group.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.005;
+  group.rotation.x = Math.sin(Date.now() * -0.001) * Math.PI * 0.01;
+}
+
+const oscillateName = (group) => {
+  group.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
+  group.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+  group.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+}
+
+const rotate = (group) => {
+  group.rotation.x += 0.00001;
+  group.rotation.y += 0.003;
+  group.rotation.z += 0.00001;
+}
 
 // Animate Loop
 function animate() {
   controls.update()
   requestAnimationFrame(animate);
   // Title Animation Loop
-  titleGroup.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
-  titleGroup.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
-  titleGroup.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+  oscillateTitle(titleGroup);
+  oscillateTag(jaeTagGroup)
 
   // jaeCube Animation Loop
-  jaeCube.rotation.x += 0.00001;
-  jaeCube.rotation.y += 0.003;
-  jaeCube.rotation.z += 0.00001;
+  rotate(jaeCube);
 
-  lowComposer.render();
   composer.render();
 }
 
