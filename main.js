@@ -15,8 +15,8 @@ const sizes = {
 }
 
 // Scene
-const scene = new THREE.Scene();
-
+const highBloomScene = new THREE.Scene();
+const lowBloomScene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
@@ -32,7 +32,22 @@ renderer.setSize(sizes.width, sizes.height);
 
 // Render Passes
 const composer = new EffectComposer(renderer);
-const renderPass = new RenderPass(scene, camera);
+const lowComposer = new EffectComposer(renderer);
+const renderPass = new RenderPass(highBloomScene, camera);
+const lowRenderPass = new RenderPass(lowBloomScene, camera);
+
+const lowBloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  1.6,
+  0.1,
+  0.1
+);
+
+lowBloomPass.threshold = 0;
+lowBloomPass.strength = 0.3;
+lowBloomPass.radius = 0.5;
+
+
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
   1.6,
@@ -71,6 +86,8 @@ const shaderPass = new ShaderPass(
   }),
 )
 
+lowComposer.addPass(lowRenderPass);
+lowComposer.addPass(lowBloomPass);
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 composer.addPass(shaderPass);
@@ -122,19 +139,19 @@ const backboard = new THREE.Mesh(geometry, material);
 backboard.position.set(-3, 0.2, -0.15);
 titleGroup.add(backboard);
 
-scene.add(titleGroup);
+highBloomScene.add(titleGroup);
 
 // Light
 const dLight = new THREE.DirectionalLight(0xffffff);
-// scene.add(dLight);
+// lowBloomScene.add(dLight);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
-// scene.add(ambientLight);
+highBloomScene.add(ambientLight);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 
-// Background Object Stars
+// Background Stars
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshBasicMaterial({
@@ -144,7 +161,7 @@ function addStar() {
 
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
   star.position.set(x, y, z);
-  scene.add(star);
+  highBloomScene.add(star);
 }
 
 Array(1000).fill().forEach(addStar)
@@ -162,9 +179,25 @@ for (let i = 0; i < 500; i++) {
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
   sphere.position.set(x, y, z);
   sphere.scale.setScalar(Math.random() * Math.random() + 0.5);
-  scene.add(sphere);
+  highBloomScene.add(sphere);
 
 }
+
+// Profile Cube
+const jae = new THREE.TextureLoader().load('./avatars/jae.jpeg');
+
+const jaeCube = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshStandardMaterial({
+    color: 0x3b4554,
+    map: jae
+  })
+)
+
+jaeCube.position.set(-8, 1, 5);
+
+highBloomScene.add(jaeCube);
+
 // Resize
 window.addEventListener('resize', () => {
   // Update Sizes
@@ -181,7 +214,7 @@ window.addEventListener('resize', () => {
 const axesHelper = new THREE.AxesHelper(5);
 const lightHelper = new THREE.DirectionalLightHelper(dLight);
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, gridHelper, axesHelper);
+// lowBloomScene.add(lightHelper, gridHelper, axesHelper);
 
 // Test Helpers
 
@@ -194,6 +227,12 @@ function animate() {
   titleGroup.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
   titleGroup.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
 
+  // jaeCube Animation Loop
+  jaeCube.rotation.x += 0.00001;
+  jaeCube.rotation.y += 0.003;
+  jaeCube.rotation.z += 0.00001;
+
+  lowComposer.render();
   composer.render();
 }
 
