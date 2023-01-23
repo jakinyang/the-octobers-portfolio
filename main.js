@@ -3,6 +3,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 
 // Constants
 const sizes = {
@@ -18,6 +22,60 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const y = document.body.getBoundingClientRect().top;
 camera.position.set(0, 2, 7)
 
+// Renderer
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector('#bg'),
+  antialias: true
+})
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(sizes.width, sizes.height);
+
+// Render Passes
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  1.6,
+  0.1,
+  0.1
+);
+
+bloomPass.threshold = 0;
+bloomPass.strength = 1.5;
+bloomPass.radius = 0.5;
+
+const shaderPass = new ShaderPass(
+  new THREE.ShaderMaterial({
+    uniforms: {
+      tDiffuse: { value: null },
+      brightness: { value: 0 },
+      contrast: { value: 0 }
+    },
+    vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+    `,
+    fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float brightness;
+    uniform float contrast;
+    varying vec2 vUv;
+    void main() {
+      vec4 texel = texture2D(tDiffuse, vUv);
+      gl_FragColor = vec4(texel.rgb + brightness, texel.a);
+    }
+    `
+  }),
+)
+
+composer.addPass(renderPass);
+composer.addPass(bloomPass);
+composer.addPass(shaderPass);
+
+
 // Groups
 const titleGroup = new THREE.Group();
 
@@ -31,7 +89,7 @@ fontLoader.load(
       height: 0.4,
       font: koulen
     });
-    const textMaterial = new THREE.MeshStandardMaterial({ color: 0x4cc9f0 });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
     const textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textMesh.position.set(-3.5, 0, 0)
     titleGroup.add(textMesh);
@@ -68,17 +126,10 @@ scene.add(titleGroup);
 
 // Light
 const dLight = new THREE.DirectionalLight(0xffffff);
+// scene.add(dLight);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(dLight, ambientLight);
-
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg')
-})
-
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(sizes.width, sizes.height);
+// scene.add(ambientLight);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -86,7 +137,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 // Background Object Stars
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({
+  const material = new THREE.MeshBasicMaterial({
     color: 0xffffff
   });
   const star = new THREE.Mesh(geometry, material);
@@ -98,6 +149,22 @@ function addStar() {
 
 Array(1000).fill().forEach(addStar)
 
+// Balls
+const ballGeometry = new THREE.IcosahedronGeometry(1, 15);
+
+for (let i = 0; i < 500; i++) {
+
+  const color = new THREE.Color();
+  color.setHSL(Math.random(), 0.7, Math.random() * 0.2 + 0.05);
+
+  const ballMaterial = new THREE.MeshBasicMaterial({ color: color });
+  const sphere = new THREE.Mesh(ballGeometry, ballMaterial);
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
+  sphere.position.set(x, y, z);
+  sphere.scale.setScalar(Math.random() * Math.random() + 0.5);
+  scene.add(sphere);
+
+}
 // Resize
 window.addEventListener('resize', () => {
   // Update Sizes
@@ -118,15 +185,16 @@ scene.add(lightHelper, gridHelper, axesHelper);
 
 // Test Helpers
 
-let mode = true;
 // Animate Loop
 function animate() {
+  controls.update()
   requestAnimationFrame(animate);
+  // Title Animation Loop
   titleGroup.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
   titleGroup.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
   titleGroup.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
-  controls.update()
-  renderer.render(scene, camera)
+
+  composer.render();
 }
 
 animate()
