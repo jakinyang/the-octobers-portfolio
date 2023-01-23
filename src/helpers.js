@@ -10,8 +10,8 @@ export const oscillateTag = (group) => {
 }
 
 export const oscillateName = (group) => {
-  group.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
-  group.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
+  group.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.01;
+  group.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.05;
   group.rotation.x = Math.sin(Date.now() * 0.001) * Math.PI * 0.1;
 }
 

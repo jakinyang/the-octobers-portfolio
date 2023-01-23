@@ -10,7 +10,7 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 import './style.css';
 
 // Components
-import { jaeCube } from './src/profiles/jae';
+import { jaeCube, jaeBoard } from './src/profiles/jae';
 import { backboard, extrudeSettings } from './src/titleBoard';
 import { addStar } from './src/environment/stars';
 import { addBall } from './src/environment/balls';
@@ -26,7 +26,7 @@ export const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 2, 40)
+camera.position.set(0, 2, 30)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -90,6 +90,7 @@ composer.addPass(shaderPass);
 // Groups
 export const titleGroup = new THREE.Group();
 export const jaeTagGroup = new THREE.Group();
+export const jaeNameGroup = new THREE.Group();
 
 // Title Group
 titleGroup.add(backboard);
@@ -118,6 +119,9 @@ jaeTagGroup.position.set(10, 0, 10);
 scene.add(jaeTagGroup);
 
 // Name Block
+jaeNameGroup.add(jaeBoard);
+jaeNameGroup.position.set(10, -6, 10)
+scene.add(jaeNameGroup);
 
 // Resize
 window.addEventListener('resize', () => {
@@ -143,7 +147,8 @@ function animate() {
   requestAnimationFrame(animate);
   // Title Animation Loop
   oscillateTitle(titleGroup);
-  oscillateTag(jaeTagGroup)
+  oscillateTag(jaeTagGroup);
+  oscillateName(jaeNameGroup);
 
   // jaeCube Animation Loop
   rotate(jaeCube);
