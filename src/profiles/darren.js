@@ -61,7 +61,7 @@ fontLoader.load(
 )
 
 // Backboard
-const backboardLength = 8, backboardWidth = 1;
+const backboardLength = 6, backboardWidth = 1;
 
 const backboardShape = new THREE.Shape();
 backboardShape.moveTo(0, 0);

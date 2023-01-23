@@ -30,9 +30,10 @@ fontLoader.load(
   (comfortaa) => {
     const tagtextGeometry = new TextGeometry(
     `
-    DOG OWNER
-    VIDEO GAMER
-    GOLF LOVER`, {
+    FOOD LOVER
+    CHALLENGE SEEKER
+    USER FOCUSED
+    `, {
       size: 1,
       height: 0.4,
       font: comfortaa
@@ -48,7 +49,7 @@ fontLoader.load(
   '../../fonts/Contrail_One_Regular.json',
   (contrail) => {
     const nametextGeometry = new TextGeometry(
-    `Francisco Ocampo`, {
+    `FRANCISCO OCAMPO`, {
       size: 1,
       height: 0.6,
       font: contrail
@@ -61,7 +62,7 @@ fontLoader.load(
 )
 
 // Backboard
-const backboardLength = 8, backboardWidth = 1;
+const backboardLength = 10, backboardWidth = 1;
 
 const backboardShape = new THREE.Shape();
 backboardShape.moveTo(0, 0);

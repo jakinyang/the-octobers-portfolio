@@ -22,6 +22,9 @@ import { benSCube, benSBoard } from './src/profiles/bens';
 import { corbinCube, corbinBoard } from './src/profiles/corbin';
 import { darrenCube, darrenBoard } from './src/profiles/darren';
 import { franciscoCube, franciscoBoard } from './src/profiles/francisco';
+import { hetaCube, hetaBoard } from './src/profiles/heta';
+import { satoeCube, satoeBoard } from './src/profiles/satoe';
+import { timCube, timBoard } from './src/profiles/tim';
 
 // Constants
 const sizes = {
@@ -34,7 +37,7 @@ export const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 2, 30)
+camera.position.set(0, 0, 30)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -255,6 +258,45 @@ franciscoNameGroup.add(franciscoBoard);
 franciscoNameGroup.position.set(-15, -8, 120);
 scene.add(franciscoNameGroup);
 
+// Heta
+// Avatar
+scene.add(hetaCube)
+
+// Tag Block
+hetaTagGroup.position.set(15, 0, 135);
+scene.add(hetaTagGroup);
+
+// Name Block
+hetaNameGroup.add(hetaBoard);
+hetaNameGroup.position.set(15, -8, 135);
+scene.add(hetaNameGroup);
+
+// Satoe
+// Avatar
+scene.add(satoeCube)
+
+// Tag Block
+satoeTagGroup.position.set(-15, 0, 150);
+scene.add(satoeTagGroup);
+
+// Name Block
+satoeNameGroup.add(satoeBoard);
+satoeNameGroup.position.set(-15, -8, 150);
+scene.add(satoeNameGroup);
+
+// Tim
+// Avatar
+scene.add(timCube)
+
+// Tag Block
+timTagGroup.position.set(15, 0, 165);
+scene.add(timTagGroup);
+
+// Name Block
+timNameGroup.add(timBoard);
+timNameGroup.position.set(15, -8, 165);
+scene.add(timNameGroup);
+
 // Resize
 window.addEventListener('resize', () => {
   // Update Sizes
@@ -295,6 +337,12 @@ function animate() {
   oscillateName(darrenNameGroup);
   oscillateTag(franciscoTagGroup);
   oscillateName(franciscoNameGroup);
+  oscillateTag(hetaTagGroup);
+  oscillateName(hetaNameGroup);
+  oscillateTag(satoeTagGroup);
+  oscillateName(satoeNameGroup);
+  oscillateTag(timTagGroup);
+  oscillateName(timNameGroup);
 
   // jaeCube Animation Loop
   rotate(jaeCube);
@@ -305,6 +353,9 @@ function animate() {
   rotate(corbinCube);
   rotate(darrenCube);
   rotate(franciscoCube);
+  rotate(hetaCube);
+  rotate(satoeCube);
+  rotate(timCube);
 
 
   composer.render();
