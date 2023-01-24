@@ -159,12 +159,12 @@ Array(2000).fill().forEach(addBall)
 scene.add(corbinCube)
 
 // Tag Block
-corbinTagGroup.position.set(-20, 0, 10);
+corbinTagGroup.position.set(-20, 0, 20);
 scene.add(corbinTagGroup);
 
 // Name Block
 corbinNameGroup.add(corbinBoard);
-corbinNameGroup.position.set(-15, -8, 10);
+corbinNameGroup.position.set(-15, -8, 20);
 scene.add(corbinNameGroup);
 
 // Darren

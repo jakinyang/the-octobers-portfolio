@@ -12,10 +12,8 @@ canvas {
   --dark-bg: rgba(15, 15, 15, 0.7);
   --spacing: 45vh;
   /* font-family: 'Comfortaa', cursive; */
-  /* font-family: 'Contrail One', cursive; */
+  font-family: 'Contrail One', cursive;
   /* font-family: 'Koulen', cursive; */
-  font-family: 'Oleo Script', cursive;
-
   font-weight: 400;
   font-style: normal;
 }
@@ -40,7 +38,7 @@ h1,
 h2,
 h3,
 blockquote {
-  font-family: elevon, sans-serif;
+  font-family: 'Contrail One', cursive;
   font-weight: 700;
   font-style: normal;
 }
