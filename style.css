@@ -10,9 +10,9 @@ canvas {
 
 :root {
   --dark-bg: rgba(15, 15, 15, 0.7);
-  --spacing: 45vh;
-  /* font-family: 'Comfortaa', cursive; */
-  font-family: 'Contrail One', cursive;
+  --spacing: 35vh;
+  font-family: 'Comfortaa', cursive;
+  /* font-family: 'Contrail One', cursive; */
   /* font-family: 'Koulen', cursive; */
   font-weight: 400;
   font-style: normal;
@@ -39,7 +39,6 @@ h2,
 h3,
 blockquote {
   font-family: 'Contrail One', cursive;
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -72,10 +71,12 @@ section {
 blockquote {
   margin: 0;
   padding: 0;
-  margin-bottom: var(--spacing);
+  margin-bottom: 10vh;
 }
 
 blockquote p {
+  padding-left: 20px;
+  padding-right: 20px;
   color: black;
   background-color: white;
   font-size: 4rem;
@@ -83,9 +84,42 @@ blockquote p {
   line-height: 1;
 }
 
-.left {
+blockquote a {
+  text-decoration: underline;
+  color: black;
 }
 
+.footer {
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--spacing);
+}
+
+.footer p {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: black;
+  background-color: white;
+  font-size: 2rem;
+  display: inline;
+  line-height: 1;
+}
+
+.footer a {
+  text-decoration: underline;
+  color: black;
+}
+
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: gold;
+}
 #first {
-  margin-top: 80vh;
+  margin-top: 83vh;
 }
