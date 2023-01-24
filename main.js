@@ -37,7 +37,7 @@ export const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 0, 30)
+camera.position.set(0, 0, 5)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -315,11 +315,20 @@ const lightHelper = new THREE.DirectionalLightHelper(dLight);
 const gridHelper = new THREE.GridHelper(200, 50);
 // lowBloomScene.add(lightHelper, gridHelper, axesHelper);
 
+// Moving Camera with scroll
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+  camera.position.z = (t * -0.01) + 5;
+}
+
+document.body.onscroll = moveCamera
+
 // Animation Loop
 function animate() {
   controls.update()
   requestAnimationFrame(animate);
-  // Title Animation Loop
+
+  // Animations
   oscillateTitle(titleGroup);
   oscillateTag(jaeTagGroup);
   oscillateName(jaeNameGroup);
@@ -344,7 +353,7 @@ function animate() {
   oscillateTag(timTagGroup);
   oscillateName(timNameGroup);
 
-  // jaeCube Animation Loop
+  // Cube Animation Loop
   rotate(jaeCube);
   rotate(russelCube);
   rotate(alisaCube);
