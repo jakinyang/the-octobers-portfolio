@@ -13,6 +13,7 @@ import './style.css';
 import { backboard, extrudeSettings } from './src/titleBoard';
 import { addStar } from './src/environment/stars';
 import { addBall } from './src/environment/balls';
+import tagText from './src/environment/chevron';
 import { oscillateName, oscillateTag, oscillateTitle, rotate } from './src/helpers';
 import { jaeCube, jaeBoard } from './src/profiles/jae';
 import {russelCube, russelBoard } from './src/profiles/russel';
@@ -100,6 +101,7 @@ composer.addPass(shaderPass);
 
 // Groups
 export const titleGroup = new THREE.Group();
+export const scrollTagGroup = new THREE.Group();
 // Jae
 export const jaeTagGroup = new THREE.Group();
 export const jaeNameGroup = new THREE.Group();
@@ -138,6 +140,10 @@ export const franciscoNameGroup = new THREE.Group();
 titleGroup.add(backboard);
 titleGroup.position.set(0, 0, -5)
 scene.add(titleGroup);
+
+// Scroll Group
+scrollTagGroup.position.set(0, -2.5, -2);
+scene.add(scrollTagGroup);
 
 // Light
 const dLight = new THREE.DirectionalLight(0xffffff);
@@ -352,6 +358,7 @@ function animate() {
   oscillateName(satoeNameGroup);
   oscillateTag(timTagGroup);
   oscillateName(timNameGroup);
+  oscillateName(scrollTagGroup);
 
   // Cube Animation Loop
   rotate(jaeCube);
