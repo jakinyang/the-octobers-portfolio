@@ -15,14 +15,14 @@ const fontLoader = new FontLoader();
 const francisco = new THREE.TextureLoader().load('../../avatars/francisco.jpeg');
 
 export const franciscoCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.BoxGeometry(4, 4, 4),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
     map: francisco
   })
 );
 
-franciscoCube.position.set(15, 1, 150);
+franciscoCube.position.set(15, -1, 180);
 
 // Tag Font
 fontLoader.load(
@@ -35,7 +35,7 @@ fontLoader.load(
     USER FOCUSED
     `, {
       size: 1,
-      height: 0.4,
+      height: 0.2,
       font: comfortaa
     });
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
@@ -51,7 +51,7 @@ fontLoader.load(
     const nametextGeometry = new TextGeometry(
     `FRANCISCO OCAMPO`, {
       size: 1,
-      height: 0.6,
+      height: 0.4,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });

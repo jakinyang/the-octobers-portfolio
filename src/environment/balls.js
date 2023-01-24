@@ -10,7 +10,7 @@ export const addBall = () => {
 
   const ballMaterial = new THREE.MeshBasicMaterial({ color: color });
   const sphere = new THREE.Mesh(ballGeometry, ballMaterial);
-  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(300));
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(700));
   sphere.position.set(x, y, z);
   sphere.scale.setScalar(Math.random() * Math.random() + 0.5);
   scene.add(sphere);

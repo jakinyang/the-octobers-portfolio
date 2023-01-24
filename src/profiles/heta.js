@@ -15,14 +15,14 @@ const fontLoader = new FontLoader();
 const heta = new THREE.TextureLoader().load('../../avatars/heta.jpeg');
 
 export const hetaCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.BoxGeometry(4, 4, 4),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
     map: heta
   })
 );
 
-hetaCube.position.set(-15, 1, 180);
+hetaCube.position.set(-15, -1, 220);
 
 // Tag Font
 fontLoader.load(
@@ -34,7 +34,7 @@ fontLoader.load(
     SELF-MOTIVATOR
     TEAM WORKER`, {
       size: 1,
-      height: 0.4,
+      height: 0.2,
       font: comfortaa
     });
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
@@ -50,7 +50,7 @@ fontLoader.load(
     const nametextGeometry = new TextGeometry(
     `HETA PATEL`, {
       size: 1,
-      height: 0.6,
+      height: 0.4,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });

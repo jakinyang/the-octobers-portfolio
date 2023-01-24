@@ -15,14 +15,14 @@ const fontLoader = new FontLoader();
 const jae = new THREE.TextureLoader().load('../../avatars/jae.jpeg');
 
 export const jaeCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.BoxGeometry(4, 4, 4),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
     map: jae
   })
 );
 
-jaeCube.position.set(-15, 1, 330);
+jaeCube.position.set(15, -1, 420);
 
 // Tag Font
 fontLoader.load(
@@ -33,7 +33,7 @@ fontLoader.load(
   FOOD EATER
   TREE PLANTER`, {
       size: 1,
-      height: 0.4,
+      height: 0.2,
       font: comfortaa
     });
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
@@ -49,7 +49,7 @@ fontLoader.load(
     const nametextGeometry = new TextGeometry(
     `JAE CHUN YANG`, {
       size: 1,
-      height: 0.6,
+      height: 0.4,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
