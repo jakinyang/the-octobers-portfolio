@@ -22,7 +22,7 @@ export const hetaCube = new THREE.Mesh(
   })
 );
 
-hetaCube.position.set(-15, 1, 135);
+hetaCube.position.set(-15, 1, 180);
 
 // Tag Font
 fontLoader.load(

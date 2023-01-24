@@ -22,7 +22,7 @@ export const darrenCube = new THREE.Mesh(
   })
 );
 
-darrenCube.position.set(-15, 1, 105);
+darrenCube.position.set(-15, 1, 60);
 
 // Tag Font
 fontLoader.load(

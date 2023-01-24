@@ -22,7 +22,7 @@ export const russelCube = new THREE.Mesh(
   })
 );
 
-russelCube.position.set(15, 1, 30);
+russelCube.position.set(-15, 1, 120);
 
 // Tag Font
 fontLoader.load(

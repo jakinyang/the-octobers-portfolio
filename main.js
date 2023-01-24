@@ -37,7 +37,7 @@ export const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 0, 30)
+camera.position.set(0, 0, 0)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -153,83 +153,17 @@ Array(1000).fill().forEach(addStar)
 // Background Balls
 Array(1000).fill().forEach(addBall)
 
-
-// Jae
-// Avatar
-scene.add(jaeCube);
-
-// Tag Block
-jaeTagGroup.position.set(10, 0, 10);
-scene.add(jaeTagGroup);
-
-// Name Block
-jaeNameGroup.add(jaeBoard);
-jaeNameGroup.position.set(10, -6, 15)
-scene.add(jaeNameGroup);
-
-// Russel
-// Avatar
-scene.add(russelCube)
-
-// Tag Block
-russelTagGroup.position.set(-15, 0, 30);
-scene.add(russelTagGroup);
-
-// Name Block
-russelNameGroup.add(russelBoard);
-russelNameGroup.position.set(-15, -8, 30);
-scene.add(russelNameGroup);
-
-// Alisa
-// Avatar
-scene.add(alisaCube)
-
-// Tag Block
-alisaTagGroup.position.set(15, 0, 45);
-scene.add(alisaTagGroup);
-
-// Name Block
-alisaNameGroup.add(alisaBoard);
-alisaNameGroup.position.set(15, -8, 45);
-scene.add(alisaNameGroup);
-
-// Benjamin Meng
-// Avatar
-scene.add(benMCube)
-
-// Tag Block
-benMTagGroup.position.set(-15, 0, 60);
-scene.add(benMTagGroup);
-
-// Name Block
-benMNameGroup.add(benMBoard);
-benMNameGroup.position.set(-15, -8, 60);
-scene.add(benMNameGroup);
-
-// B Stolb
-// Avatar
-scene.add(benSCube)
-
-// Tag Block
-benSTagGroup.position.set(15, 0, 75);
-scene.add(benSTagGroup);
-
-// Name Block
-benSNameGroup.add(benSBoard);
-benSNameGroup.position.set(15, -8, 75);
-scene.add(benSNameGroup);
-
 // Corbin
 // Avatar
 scene.add(corbinCube)
 
 // Tag Block
-corbinTagGroup.position.set(-15, 0, 90);
+corbinTagGroup.position.set(-15, 0, 30);
 scene.add(corbinTagGroup);
 
 // Name Block
 corbinNameGroup.add(corbinBoard);
-corbinNameGroup.position.set(-15, -8, 90);
+corbinNameGroup.position.set(-15, -8, 30);
 scene.add(corbinNameGroup);
 
 // Darren
@@ -237,25 +171,51 @@ scene.add(corbinNameGroup);
 scene.add(darrenCube)
 
 // Tag Block
-darrenTagGroup.position.set(15, 0, 105);
+darrenTagGroup.position.set(15, 0, 60);
 scene.add(darrenTagGroup);
 
 // Name Block
 darrenNameGroup.add(darrenBoard);
-darrenNameGroup.position.set(15, -8, 105);
+darrenNameGroup.position.set(15, -8, 60);
 scene.add(darrenNameGroup);
+
+// Benjamin Meng
+// Avatar
+scene.add(benMCube)
+
+// Tag Block
+benMTagGroup.position.set(-15, 0, 90);
+scene.add(benMTagGroup);
+
+// Name Block
+benMNameGroup.add(benMBoard);
+benMNameGroup.position.set(-15, -8, 90);
+scene.add(benMNameGroup);
+
+// Russel
+// Avatar
+scene.add(russelCube)
+
+// Tag Block
+russelTagGroup.position.set(15, 0, 120);
+scene.add(russelTagGroup);
+
+// Name Block
+russelNameGroup.add(russelBoard);
+russelNameGroup.position.set(15, -8, 120);
+scene.add(russelNameGroup);
 
 // Francisco
 // Avatar
 scene.add(franciscoCube)
 
 // Tag Block
-franciscoTagGroup.position.set(-15, 0, 120);
+franciscoTagGroup.position.set(-15, 0, 150);
 scene.add(franciscoTagGroup);
 
 // Name Block
 franciscoNameGroup.add(franciscoBoard);
-franciscoNameGroup.position.set(-15, -8, 120);
+franciscoNameGroup.position.set(-15, -8, 150);
 scene.add(franciscoNameGroup);
 
 // Heta
@@ -263,39 +223,78 @@ scene.add(franciscoNameGroup);
 scene.add(hetaCube)
 
 // Tag Block
-hetaTagGroup.position.set(15, 0, 135);
+hetaTagGroup.position.set(15, 0, 180);
 scene.add(hetaTagGroup);
 
 // Name Block
 hetaNameGroup.add(hetaBoard);
-hetaNameGroup.position.set(15, -8, 135);
+hetaNameGroup.position.set(15, -8, 180);
 scene.add(hetaNameGroup);
-
-// Satoe
-// Avatar
-scene.add(satoeCube)
-
-// Tag Block
-satoeTagGroup.position.set(-15, 0, 150);
-scene.add(satoeTagGroup);
-
-// Name Block
-satoeNameGroup.add(satoeBoard);
-satoeNameGroup.position.set(-15, -8, 150);
-scene.add(satoeNameGroup);
 
 // Tim
 // Avatar
 scene.add(timCube)
 
 // Tag Block
-timTagGroup.position.set(15, 0, 165);
+timTagGroup.position.set(15, 0, 210);
 scene.add(timTagGroup);
 
 // Name Block
 timNameGroup.add(timBoard);
-timNameGroup.position.set(15, -8, 165);
+timNameGroup.position.set(15, -8, 210);
 scene.add(timNameGroup);
+
+// Satoe
+// Avatar
+scene.add(satoeCube)
+
+// Tag Block
+satoeTagGroup.position.set(-15, 0, 240);
+scene.add(satoeTagGroup);
+
+// Name Block
+satoeNameGroup.add(satoeBoard);
+satoeNameGroup.position.set(-15, -8, 240);
+scene.add(satoeNameGroup);
+
+// B Stolb
+// Avatar
+scene.add(benSCube)
+
+// Tag Block
+benSTagGroup.position.set(15, 0, 270);
+scene.add(benSTagGroup);
+
+// Name Block
+benSNameGroup.add(benSBoard);
+benSNameGroup.position.set(15, -8, 270);
+scene.add(benSNameGroup);
+
+// Alisa
+// Avatar
+scene.add(alisaCube)
+
+// Tag Block
+alisaTagGroup.position.set(15, 0, 300);
+scene.add(alisaTagGroup);
+
+// Name Block
+alisaNameGroup.add(alisaBoard);
+alisaNameGroup.position.set(15, -8, 300);
+scene.add(alisaNameGroup);
+
+// Jae
+// Avatar
+scene.add(jaeCube);
+
+// Tag Block
+jaeTagGroup.position.set(15, 0, 330);
+scene.add(jaeTagGroup);
+
+// Name Block
+jaeNameGroup.add(jaeBoard);
+jaeNameGroup.position.set(15, -6, 330)
+scene.add(jaeNameGroup);
 
 // Resize
 window.addEventListener('resize', () => {
@@ -315,11 +314,20 @@ const lightHelper = new THREE.DirectionalLightHelper(dLight);
 const gridHelper = new THREE.GridHelper(200, 50);
 // lowBloomScene.add(lightHelper, gridHelper, axesHelper);
 
+// Moving Camera with scroll
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+  camera.position.z = (t * -0.05) + 5;
+}
+
+document.body.onscroll = moveCamera
+
 // Animation Loop
 function animate() {
   controls.update()
   requestAnimationFrame(animate);
-  // Title Animation Loop
+
+  // Animations
   oscillateTitle(titleGroup);
   oscillateTag(jaeTagGroup);
   oscillateName(jaeNameGroup);
@@ -344,7 +352,7 @@ function animate() {
   oscillateTag(timTagGroup);
   oscillateName(timNameGroup);
 
-  // jaeCube Animation Loop
+  // Cube Animation Loop
   rotate(jaeCube);
   rotate(russelCube);
   rotate(alisaCube);

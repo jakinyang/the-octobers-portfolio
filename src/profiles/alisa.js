@@ -22,7 +22,7 @@ export const alisaCube = new THREE.Mesh(
   })
 );
 
-alisaCube.position.set(-15, 1, 45);
+alisaCube.position.set(-15, 1, 300);
 
 // Tag Font
 fontLoader.load(

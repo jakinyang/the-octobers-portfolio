@@ -22,7 +22,7 @@ export const franciscoCube = new THREE.Mesh(
   })
 );
 
-franciscoCube.position.set(15, 1, 120);
+franciscoCube.position.set(15, 1, 150);
 
 // Tag Font
 fontLoader.load(

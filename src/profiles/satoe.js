@@ -22,7 +22,7 @@ export const satoeCube = new THREE.Mesh(
   })
 );
 
-satoeCube.position.set(15, 1, 150);
+satoeCube.position.set(15, 1, 240);
 
 // Tag Font
 fontLoader.load(

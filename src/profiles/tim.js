@@ -22,7 +22,7 @@ export const timCube = new THREE.Mesh(
   })
 );
 
-timCube.position.set(-15, 1, 165);
+timCube.position.set(-15, 1, 210);
 
 // Tag Font
 fontLoader.load(
