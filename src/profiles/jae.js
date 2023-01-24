@@ -31,7 +31,7 @@ fontLoader.load(
     const tagtextGeometry = new TextGeometry(
     `
   MUSIC DOER
-  FOOD EATER
+  COMMUNITY MAKER
   TREE PLANTER`, {
       size: 1,
       height: 0.2,
