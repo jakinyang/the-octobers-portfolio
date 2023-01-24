@@ -53,7 +53,7 @@ fontLoader.load(
       height: 0.4,
       font: contrail
     });
-    const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
+    const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0x157A6E });
     const alisaMesh = new THREE.Mesh(nametextGeometry, nametextMaterial);
     alisaMesh.position.set(-3.5, 0, 0)
     alisaNameGroup.add(alisaMesh);
@@ -71,6 +71,6 @@ backboardShape.lineTo(backboardLength, 0);
 backboardShape.lineTo(0, 0);
 
 const backboardGeometry = new THREE.ExtrudeGeometry(backboardShape, extrudeSettings);
-const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x020122 });
+const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x12233F });
 export const alisaBoard = new THREE.Mesh(backboardGeometry, backboardMaterial);
 alisaBoard.position.set(-3.5, 0, 0);

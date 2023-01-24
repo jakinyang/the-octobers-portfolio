@@ -37,7 +37,7 @@ fontLoader.load(
       height: 0.2,
       font: comfortaa
     });
-    const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
+    const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0x468221 });
     const tagtextMesh = new THREE.Mesh(tagtextGeometry, tagtextMaterial);
     tagtextMesh.position.set(-5, 2, 0)
     timTagGroup.add(tagtextMesh);

@@ -294,7 +294,7 @@ scene.add(jaeTagGroup);
 
 // Name Block
 jaeNameGroup.add(jaeBoard);
-jaeNameGroup.position.set(-15, -6, 410)
+jaeNameGroup.position.set(-15, -8, 410)
 scene.add(jaeNameGroup);
 
 // Resize

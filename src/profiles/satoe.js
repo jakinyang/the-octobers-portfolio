@@ -37,7 +37,7 @@ fontLoader.load(
       height: 0.2,
       font: comfortaa
     });
-    const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
+    const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xED217C });
     const tagtextMesh = new THREE.Mesh(tagtextGeometry, tagtextMaterial);
     tagtextMesh.position.set(-5, 2, 0)
     satoeTagGroup.add(tagtextMesh);
@@ -53,7 +53,7 @@ fontLoader.load(
       height: 0.4,
       font: contrail
     });
-    const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
+    const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0x605406 });
     const satoeMesh = new THREE.Mesh(nametextGeometry, nametextMaterial);
     satoeMesh.position.set(-3.5, 0, 0)
     satoeNameGroup.add(satoeMesh);
@@ -71,6 +71,6 @@ backboardShape.lineTo(backboardLength, 0);
 backboardShape.lineTo(0, 0);
 
 const backboardGeometry = new THREE.ExtrudeGeometry(backboardShape, extrudeSettings);
-const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x020122 });
+const backboardMaterial = new THREE.MeshBasicMaterial({ color: 0x0C312F });
 export const satoeBoard = new THREE.Mesh(backboardGeometry, backboardMaterial);
 satoeBoard.position.set(-3.5, 0, 0);
