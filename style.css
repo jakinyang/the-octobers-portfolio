@@ -10,7 +10,7 @@ canvas {
 
 :root {
   --dark-bg: rgba(15, 15, 15, 0.7);
-  --spacing: 28vh;
+  --spacing: 35vh;
   font-family: 'Comfortaa', cursive;
   /* font-family: 'Contrail One', cursive; */
   /* font-family: 'Koulen', cursive; */
@@ -60,8 +60,8 @@ header {
 
 section {
   margin-bottom: var(--spacing);
-  margin-right: 35%; 
-  margin-left: 35%; 
+  margin-right: 33%; 
+  margin-left: 33%; 
   padding: 1rem;
   background: var(--dark-bg);
   font-size: 1.25rem;
