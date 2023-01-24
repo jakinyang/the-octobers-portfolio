@@ -22,7 +22,7 @@ export const benMCube = new THREE.Mesh(
   })
 );
 
-benMCube.position.set(15, 1, 60);
+benMCube.position.set(15, 1, 90);
 
 // Tag Font
 fontLoader.load(

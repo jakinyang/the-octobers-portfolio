@@ -22,7 +22,7 @@ export const jaeCube = new THREE.Mesh(
   })
 );
 
-jaeCube.position.set(-10, 1, 10);
+jaeCube.position.set(-15, 1, 330);
 
 // Tag Font
 fontLoader.load(

@@ -22,7 +22,7 @@ export const corbinCube = new THREE.Mesh(
   })
 );
 
-corbinCube.position.set(15, 1, 90);
+corbinCube.position.set(15, 1, 30);
 
 // Tag Font
 fontLoader.load(
