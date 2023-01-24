@@ -15,14 +15,14 @@ const fontLoader = new FontLoader();
 const satoe = new THREE.TextureLoader().load('../../avatars/satoe.jpeg');
 
 export const satoeCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.BoxGeometry(4, 4, 4),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
     map: satoe
   })
 );
 
-satoeCube.position.set(15, 1, 240);
+satoeCube.position.set(-15, -1, 300);
 
 // Tag Font
 fontLoader.load(
@@ -34,7 +34,7 @@ fontLoader.load(
     DOG BELIEVER
     DOG HIKER`, {
       size: 1,
-      height: 0.4,
+      height: 0.2,
       font: comfortaa
     });
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
@@ -50,7 +50,7 @@ fontLoader.load(
     const nametextGeometry = new TextGeometry(
     `SATOE SAKONJO`, {
       size: 1,
-      height: 0.6,
+      height: 0.4,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });

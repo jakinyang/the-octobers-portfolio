@@ -37,7 +37,7 @@ export const scene = new THREE.Scene();
 // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const y = document.body.getBoundingClientRect().top;
-camera.position.set(0, 0, 0)
+camera.position.set(0, 0, 5)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -136,6 +136,7 @@ export const franciscoNameGroup = new THREE.Group();
 
 // Title Group
 titleGroup.add(backboard);
+titleGroup.position.set(0, 0, -5)
 scene.add(titleGroup);
 
 // Light
@@ -148,22 +149,22 @@ scene.add(ambientLight);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // Background Stars
-Array(1000).fill().forEach(addStar)
+Array(2000).fill().forEach(addStar)
 
 // Background Balls
-Array(1000).fill().forEach(addBall)
+Array(2000).fill().forEach(addBall)
 
 // Corbin
 // Avatar
 scene.add(corbinCube)
 
 // Tag Block
-corbinTagGroup.position.set(-15, 0, 30);
+corbinTagGroup.position.set(-20, 0, 10);
 scene.add(corbinTagGroup);
 
 // Name Block
 corbinNameGroup.add(corbinBoard);
-corbinNameGroup.position.set(-15, -8, 30);
+corbinNameGroup.position.set(-15, -8, 10);
 scene.add(corbinNameGroup);
 
 // Darren
@@ -171,12 +172,12 @@ scene.add(corbinNameGroup);
 scene.add(darrenCube)
 
 // Tag Block
-darrenTagGroup.position.set(15, 0, 60);
+darrenTagGroup.position.set(15, 0, 50);
 scene.add(darrenTagGroup);
 
 // Name Block
 darrenNameGroup.add(darrenBoard);
-darrenNameGroup.position.set(15, -8, 60);
+darrenNameGroup.position.set(15, -8, 50);
 scene.add(darrenNameGroup);
 
 // Benjamin Meng
@@ -184,7 +185,7 @@ scene.add(darrenNameGroup);
 scene.add(benMCube)
 
 // Tag Block
-benMTagGroup.position.set(-15, 0, 90);
+benMTagGroup.position.set(-20, 0, 90);
 scene.add(benMTagGroup);
 
 // Name Block
@@ -197,12 +198,12 @@ scene.add(benMNameGroup);
 scene.add(russelCube)
 
 // Tag Block
-russelTagGroup.position.set(15, 0, 120);
+russelTagGroup.position.set(15, 0, 130);
 scene.add(russelTagGroup);
 
 // Name Block
 russelNameGroup.add(russelBoard);
-russelNameGroup.position.set(15, -8, 120);
+russelNameGroup.position.set(15, -8, 130);
 scene.add(russelNameGroup);
 
 // Francisco
@@ -210,12 +211,12 @@ scene.add(russelNameGroup);
 scene.add(franciscoCube)
 
 // Tag Block
-franciscoTagGroup.position.set(-15, 0, 150);
+franciscoTagGroup.position.set(-20, 0, 170);
 scene.add(franciscoTagGroup);
 
 // Name Block
 franciscoNameGroup.add(franciscoBoard);
-franciscoNameGroup.position.set(-15, -8, 150);
+franciscoNameGroup.position.set(-15, -8, 170);
 scene.add(franciscoNameGroup);
 
 // Heta
@@ -223,12 +224,12 @@ scene.add(franciscoNameGroup);
 scene.add(hetaCube)
 
 // Tag Block
-hetaTagGroup.position.set(15, 0, 180);
+hetaTagGroup.position.set(15, 0, 210);
 scene.add(hetaTagGroup);
 
 // Name Block
 hetaNameGroup.add(hetaBoard);
-hetaNameGroup.position.set(15, -8, 180);
+hetaNameGroup.position.set(15, -8, 210);
 scene.add(hetaNameGroup);
 
 // Tim
@@ -236,12 +237,12 @@ scene.add(hetaNameGroup);
 scene.add(timCube)
 
 // Tag Block
-timTagGroup.position.set(15, 0, 210);
+timTagGroup.position.set(-20, 0, 250);
 scene.add(timTagGroup);
 
 // Name Block
 timNameGroup.add(timBoard);
-timNameGroup.position.set(15, -8, 210);
+timNameGroup.position.set(-15, -8, 250);
 scene.add(timNameGroup);
 
 // Satoe
@@ -249,12 +250,12 @@ scene.add(timNameGroup);
 scene.add(satoeCube)
 
 // Tag Block
-satoeTagGroup.position.set(-15, 0, 240);
+satoeTagGroup.position.set(15, 0, 290);
 scene.add(satoeTagGroup);
 
 // Name Block
 satoeNameGroup.add(satoeBoard);
-satoeNameGroup.position.set(-15, -8, 240);
+satoeNameGroup.position.set(15, -8, 290);
 scene.add(satoeNameGroup);
 
 // B Stolb
@@ -262,12 +263,12 @@ scene.add(satoeNameGroup);
 scene.add(benSCube)
 
 // Tag Block
-benSTagGroup.position.set(15, 0, 270);
+benSTagGroup.position.set(-20, 0, 330);
 scene.add(benSTagGroup);
 
 // Name Block
 benSNameGroup.add(benSBoard);
-benSNameGroup.position.set(15, -8, 270);
+benSNameGroup.position.set(-15, -8, 330);
 scene.add(benSNameGroup);
 
 // Alisa
@@ -275,12 +276,12 @@ scene.add(benSNameGroup);
 scene.add(alisaCube)
 
 // Tag Block
-alisaTagGroup.position.set(15, 0, 300);
+alisaTagGroup.position.set(15, 0, 370);
 scene.add(alisaTagGroup);
 
 // Name Block
 alisaNameGroup.add(alisaBoard);
-alisaNameGroup.position.set(15, -8, 300);
+alisaNameGroup.position.set(15, -8, 370);
 scene.add(alisaNameGroup);
 
 // Jae
@@ -288,12 +289,12 @@ scene.add(alisaNameGroup);
 scene.add(jaeCube);
 
 // Tag Block
-jaeTagGroup.position.set(15, 0, 330);
+jaeTagGroup.position.set(-20, 0, 410);
 scene.add(jaeTagGroup);
 
 // Name Block
 jaeNameGroup.add(jaeBoard);
-jaeNameGroup.position.set(15, -6, 330)
+jaeNameGroup.position.set(-15, -6, 410)
 scene.add(jaeNameGroup);
 
 // Resize

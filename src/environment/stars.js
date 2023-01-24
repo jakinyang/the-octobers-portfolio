@@ -9,7 +9,7 @@ export const addStar = () => {
   });
   const star = new THREE.Mesh(geometry, material);
 
-  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(700));
   star.position.set(x, y, z);
   scene.add(star);
 }

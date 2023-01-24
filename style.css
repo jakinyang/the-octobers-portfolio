@@ -10,7 +10,7 @@ canvas {
 
 :root {
   --dark-bg: rgba(15, 15, 15, 0.7);
-  --spacing: 330px;
+  --spacing: 45vh;
   /* font-family: 'Comfortaa', cursive; */
   /* font-family: 'Contrail One', cursive; */
   /* font-family: 'Koulen', cursive; */
@@ -63,8 +63,8 @@ header {
 
 section {
   margin-bottom: var(--spacing);
-  margin-right: 33%; 
-  margin-left: 33%; 
+  margin-right: 35%; 
+  margin-left: 35%; 
   padding: 1rem;
   background: var(--dark-bg);
   font-size: 1.25rem;
@@ -89,5 +89,5 @@ blockquote p {
 }
 
 #first {
-  margin-top: 90vh;
+  margin-top: 80vh;
 }

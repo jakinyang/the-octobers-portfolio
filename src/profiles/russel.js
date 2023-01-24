@@ -15,14 +15,14 @@ const fontLoader = new FontLoader();
 const russel = new THREE.TextureLoader().load('../../avatars/russel.png');
 
 export const russelCube = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.BoxGeometry(4, 4, 4),
   new THREE.MeshStandardMaterial({
     color: 0x3b4554,
     map: russel
   })
 );
 
-russelCube.position.set(-15, 1, 120);
+russelCube.position.set(-15, -1, 140);
 
 // Tag Font
 fontLoader.load(
@@ -34,7 +34,7 @@ fontLoader.load(
     ENTHUSIASTIC DANCER
     SPICY-NOODLE LOVER`, {
       size: 1,
-      height: 0.4,
+      height: 0.2,
       font: comfortaa
     });
     const tagtextMaterial = new THREE.MeshBasicMaterial({ color: 0xff6d00 });
@@ -50,7 +50,7 @@ fontLoader.load(
     const nametextGeometry = new TextGeometry(
     `RUSSEL MUELLER`, {
       size: 1,
-      height: 0.6,
+      height: 0.4,
       font: contrail
     });
     const nametextMaterial = new THREE.MeshBasicMaterial({ color: 0xF4442E });
