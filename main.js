@@ -45,7 +45,7 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
   antialias: true
 })
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(sizes.width, sizes.height);
 
 // Render Passes
